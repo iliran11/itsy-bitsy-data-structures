@@ -3,5 +3,12 @@
   "version": "1.0.0",
   "author": "James Kyle <me@thejameskyle.com> (thejameskyle.com)",
   "license": "CC-BY-4.0",
-  "main": "./itsy-bitsy-data-structures.js"
+  "main": "./itsy-bitsy-data-structures.js",
+  "devDependencies": {
+    "jest": "^21.2.1"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+
 }
