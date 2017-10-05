@@ -1,6 +1,8 @@
 const { List } = require('../itsy-bitsy-data-structures.js')
-const { createList } = require('./helpers.js')
+const { createList, randomInt } = require('./helpers.js')
+debugger;
 const n = 10
+const randomNumber = randomInt(1, 100)
 
 describe('List Tests', () => {
     test('New list has 0 length and empty memory', () => {
@@ -33,7 +35,19 @@ describe('List Tests', () => {
         const { list, pushedNumbers } = createList(n)
         list.pop();
         pushedNumbers.pop();
-        expect(list.length).toBe(n-1)
+        expect(list.length).toBe(n - 1)
         expect(list.memory).toEqual(pushedNumbers)
+    })
+    test('unshift an element', () => {
+        const { list, pushedNumbers } = createList(n)
+        pushedNumbers.unshift(randomNumber)
+        list.unshift(randomNumber)
+        expect(list.memory).toEqual(pushedNumbers)
+    })
+    test('unshift an empty list', () => {
+        list = new List();
+        list.unshift(randomNumber);
+        expect(list.memory).toEqual([randomNumber])
+        expect(list.length).toBe(1)
     })
 })
