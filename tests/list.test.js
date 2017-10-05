@@ -1,6 +1,5 @@
 const { List } = require('../itsy-bitsy-data-structures.js')
 const { createList, randomInt } = require('./helpers.js')
-debugger;
 const n = 10
 const randomNumber = randomInt(1, 100)
 
@@ -10,7 +9,7 @@ describe('List Tests', () => {
         expect(list.length).toBe(0);
         expect(list.memory.length).toBe(0);
     });
-    test(`pushing numbers,extract them with get()`, () => {
+    test(`pushing numbers and extracting them with get()`, () => {
         const { list, pushedNumbers } = createList(n)
         expect(list.length).toBe(n)
         expect(list.memory.length).toBe(n)
@@ -31,14 +30,14 @@ describe('List Tests', () => {
         })
             .toThrow()
     });
-    test('pop a list', () => {
+    test('pop a list and check for the last element and new length', () => {
         const { list, pushedNumbers } = createList(n)
         list.pop();
         pushedNumbers.pop();
         expect(list.length).toBe(n - 1)
         expect(list.memory).toEqual(pushedNumbers)
     })
-    test('unshift an element', () => {
+    test('unshift an element from a list', () => {
         const { list, pushedNumbers } = createList(n)
         pushedNumbers.unshift(randomNumber)
         list.unshift(randomNumber)
@@ -49,5 +48,18 @@ describe('List Tests', () => {
         list.unshift(randomNumber);
         expect(list.memory).toEqual([randomNumber])
         expect(list.length).toBe(1)
+    })
+    test('shift an elemet from a list', () => {
+        const { list, pushedNumbers } = createList(n)
+        const secondValueInOriginalArray = list.get(1)
+        list.shift()
+        expect(list.get(0)).toBe(secondValueInOriginalArray)
+    })
+    test('shifting an empty array throws an error',()=> {
+        const list = new List();
+        expect(() => {
+            list.shift()
+        })
+            .toThrow();
     })
 })
