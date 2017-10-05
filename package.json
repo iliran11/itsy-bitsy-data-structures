@@ -8,7 +8,10 @@
     "jest": "^21.2.1"
   },
   "scripts": {
+    "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --env jest-environment-node-debug",
     "test": "jest"
+  },
+  "dependencies": {
+    "jest-environment-node-debug": "^2.0.0"
   }
-
 }
