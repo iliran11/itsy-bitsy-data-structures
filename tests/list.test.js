@@ -1,24 +1,39 @@
 const { List } = require('../itsy-bitsy-data-structures.js')
+const { createList } = require('./helpers.js')
+const n = 10
 
-describe('Creation and pushing 3 numbers', () => {
-    var list = new List()
-    list.push(4);
-    list.push(1);
-    list.push(6);
-    test('New list is Created', () => {
-        expect(list).toBeDefined();
+describe('List Tests', () => {
+    test('New list has 0 length and empty memory', () => {
+        const list = new List();
+        expect(list.length).toBe(0);
+        expect(list.memory.length).toBe(0);
     });
-    test('New list memory is equal to 1', () => {
-        const memoryLength = list.memory.length
-        expect(memoryLength).toBe(3);
+    test(`pushing numbers,extract them with get()`, () => {
+        const { list, pushedNumbers } = createList(n)
+        expect(list.length).toBe(n)
+        expect(list.memory.length).toBe(n)
+        expect(pushedNumbers).toEqual(list.memory)
+        pushedNumbers.forEach((value, index) => {
+            expect(list.get(index)).toBe(value)
+        })
     });
-    test('first address is correct', () => {
-        firstMemoryAddressValue = list.get(0)
-        expect(firstMemoryAddressValue).toBe(4)
-    })
-    test('last address is correct', () => {
-        firstMemoryAddressValue = list.get(2)
-        expect(firstMemoryAddressValue).toBe(6)
+    test('throw an error on illegal address rerieval', () => {
+        const { list, pushedNumbers } = createList(n)
+        expect(() => {
+            list.get(-1)
+        })
+            .toThrow();
+        /** if n=10, you should probably can get only 9 position of the list */
+        expect(() => {
+            list.get(n)
+        })
+            .toThrow()
+    });
+    test('pop a list', () => {
+        const { list, pushedNumbers } = createList(n)
+        list.pop();
+        pushedNumbers.pop();
+        expect(list.length).toBe(n-1)
+        expect(list.memory).toEqual(pushedNumbers)
     })
 })
-// describe('shifting to a list with 3 number elements')
