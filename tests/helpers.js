@@ -1,5 +1,5 @@
 const { List } = require('../itsy-bitsy-data-structures.js')
-function RandomInt(min, max) {
+function randomInt(min, max) {
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -8,7 +8,7 @@ function RandomInt(min, max) {
 function getArray(N) {
     const array = [...new Array(N)];
     return array.map(() => {
-        return RandomInt(10, 100)
+        return randomInt(10, 100)
     })
 
 }
@@ -20,5 +20,6 @@ module.exports = {
             list.push(number)
         })
         return { list, pushedNumbers }
-    }
+    },
+    randomInt
 };
