@@ -254,18 +254,18 @@
  * structures so that you can choose from them.
  */
 
- /*** ===================================================================== ***\
-  ** - MEMORY -------------------------------------------------------------- **
-  * ========================================================================= *
-  *                             _.-..                                         *
-  *                           ,'9 )\)`-.,.--.                                 *
-  *                           `-.|           `.                               *
-  *                              \,      ,    \)                              *
-  *                               `.  )._\   (\                               *
-  *                                |//   `-,//                                *
-  *                                ]||    //"                                 *
-  **                        hjw    ""    ""                                  **
- \*** ===================================================================== ***/
+/*** ===================================================================== ***\
+ ** - MEMORY -------------------------------------------------------------- **
+ * ========================================================================= *
+ *                             _.-..                                         *
+ *                           ,'9 )\)`-.,.--.                                 *
+ *                           `-.|           `.                               *
+ *                              \,      ,    \)                              *
+ *                               `.  )._\   (\                               *
+ *                                |//   `-,//                                *
+ *                                ]||    //"                                 *
+ **                        hjw    ""    ""                                  **
+\*** ===================================================================== ***/
 
 /**
  * A computer's memory is pretty boring, it's just a bunch of ordered slots
@@ -346,6 +346,9 @@ class List {
    */
 
   get(address) {
+    if (address < 0 || address > (this.length - 1)) {
+      throw 'Address Does not Exist on this list'
+    }
     return this.memory[address];
   }
 
@@ -1057,8 +1060,8 @@ class LinkedList {
       node.next = this.head;
       this.head = node;
 
-    // If we're adding a node in any other position we need to splice it in
-    // between the current node and the previous node.
+      // If we're adding a node in any other position we need to splice it in
+      // between the current node and the previous node.
     } else {
       // First, find the previous node and the current node.
       let prev = this.get(position - 1);
@@ -1089,8 +1092,8 @@ class LinkedList {
     if (position === 0) {
       this.head = this.head.next;
 
-    // For any other position we need to look up the previous node and set it
-    // to the node after the current position.
+      // For any other position we need to look up the previous node and set it
+      // to the node after the current position.
     } else {
       let prev = this.get(position - 1);
       prev.next = prev.next.next;
@@ -1343,11 +1346,11 @@ class BinarySearchTree {
       if (value > current.value) {
         current = current.right;
 
-      // If the value is less than the current.value we move to the left.
+        // If the value is less than the current.value we move to the left.
       } else if (value < current.value) {
         current = current.left;
 
-      // Otherwise we must be equal values and we return true.
+        // Otherwise we must be equal values and we return true.
       } else {
         return true;
       }
@@ -1400,7 +1403,7 @@ class BinarySearchTree {
         // Otherwise just move on to the right node.
         current = current.right;
 
-      // If the value is less than the current.value we move to the left.
+        // If the value is less than the current.value we move to the left.
       } else if (value < current.value) {
 
         // If `left` does not exist, set it to our node, and stop traversing.
@@ -1412,8 +1415,8 @@ class BinarySearchTree {
         // Otherwise just move on to the left node.
         current = current.left;
 
-      // If the number isn't less than or greater, then it must be the same and
-      // we don't do anything.
+        // If the number isn't less than or greater, then it must be the same and
+        // we don't do anything.
       } else {
         break;
       }
