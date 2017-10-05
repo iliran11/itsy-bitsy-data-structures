@@ -466,7 +466,9 @@ class List {
 
   shift() {
     // Don't do anything if we don't have any items.
-    if (this.length === 0) return;
+    if (this.length === 0) {
+      throw 'cannot shift an empty array'
+    };
 
     let value = this.memory[0];
 
