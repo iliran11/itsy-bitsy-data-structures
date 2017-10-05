@@ -396,7 +396,7 @@ class List {
     // Get the last value, stop storing it, and return it.
     let lastAddress = this.length - 1;
     let value = this.memory[lastAddress];
-    delete this.memory[lastAddress];
+    this.memory.pop()
     this.length--;
 
     // Also return the value so it can be used.
