@@ -3,7 +3,7 @@ const { createList, randomInt } = require('./helpers.js')
 const n = 10
 const randomNumber = randomInt(1, 100)
 
-describe('List Tests', () => {
+describe('Data Structure being tested: List', () => {
     test('New list has 0 length and empty memory', () => {
         const list = new List();
         expect(list.length).toBe(0);
